@@ -1,0 +1,56 @@
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.row-c {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.col-c {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.col-h-c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.col-v-c {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.num-id {
+    color: #a1a1a1;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.slide-h {
+    height: 100%;
+    width: 0px;
+    overflow: hidden;
+}
+.slide-v {
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+}
