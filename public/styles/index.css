@@ -92,7 +92,9 @@ h4 {
     width: 50%;
     margin: 350px auto 0 auto;
 }
-
+.about-me h3 {
+    display: none;
+}
 .about-me p {
     font-weight: 200;
     margin-top: 10px;
@@ -100,6 +102,9 @@ h4 {
 
 .experience {
     margin-top: 350px;
+}
+.experience .exp-title {
+    display: none;
 }
 .experience .title {
     display: flex;
@@ -140,7 +145,9 @@ h4 {
     width: 88%;
     font-weight: 200;
 }
-
+.skills h3 {
+    display: none;
+}
 .skills-line {
     margin-top: 300px;
     width: 100%;
@@ -163,6 +170,11 @@ h4 {
     width: 50%;
     margin: 300px auto 100px auto;
 }
+
+.portfolio h3 {
+    display: none;
+}
+
 .portfolio div {
     margin-top: 60px;
 }
@@ -175,11 +187,90 @@ h4 {
     font-weight: 200;
     text-decoration: none;
 }
-.portfolio div a:nth-child(2) {s
-}
+
 
 .portfolio p {
     font-size: 15px;
     font-weight: 200;
     margin: 10px 0 0 0;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 900px) {
+    .square {
+        display: none;
+    }
+
+    .about-me, .experience, .skills, .portfolio {
+        width: 75%;
+        margin: 150px auto 0 auto;
+    }
+    
+    .about-me h3 {
+        display: block;
+    }
+
+    .about-me p {
+        font-size: 14px;
+    }
+    .experience .exp-title {
+        display: block;
+    }
+    .experience .title {
+        display: block;
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    .experience .title h3 {
+        font-size: 16px;
+    }
+
+    .experience .title p {
+        font-size: 12px;
+        margin-top: 10px;
+    } 
+
+    .experience .description {
+        width: 100%;
+        margin: 0 auto;
+    } 
+
+    .experience .description p {
+        width: 100%;
+    }
+
+    .experience .description p:nth-child(1) {
+        font-size: 12px;
+        margin-top: 0;
+    } 
+
+    .experience .description p:nth-child(2) {
+        width: 100%;
+    }
+
+    .experience .title .dash {
+        display: none;
+    }
+    .skills h3 {
+        display: block;
+    }
+    .skills {
+        flex-direction: column;
+    }
+
+    .skills div {
+        margin-top: 20px;
+    }
+    .portfolio h3 {
+        display: block;
+    }
+    .portfolio {
+        margin-bottom: 50px;
+    }
 }
