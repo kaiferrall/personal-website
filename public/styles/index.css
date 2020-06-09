@@ -190,6 +190,11 @@ h4 {
     margin: 0 0 10px 0;
 }
 
+.portfolio h4 span {
+    color: grey;
+    font-weight: 300;
+}
+
 .portfolio a {
     font-size: 15px;
     font-weight: 300;
@@ -218,6 +223,10 @@ h4 {
 .portfolio .tall-img {
     width: 100px;
     height: 200px;
+}
+.portfolio .wide-img {
+    width: 250px;
+    height: 100px;
 }
 .portfolio small {
     font-size: 12px;

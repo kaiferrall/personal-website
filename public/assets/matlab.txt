@@ -1,0 +1,642 @@
+classdef Opinion_App_final < matlab.apps.AppBase
+
+    % Properties that correspond to app components
+    properties (Access = public)
+        UIFigure                        matlab.ui.Figure
+        UIAxes                          matlab.ui.control.UIAxes
+        UITable                         matlab.ui.control.Table
+        UIAxes2                         matlab.ui.control.UIAxes
+        DimensionsListBoxLabel          matlab.ui.control.Label
+        DimensionsListBox               matlab.ui.control.ListBox
+        NumberofNodesEditFieldLabel     matlab.ui.control.Label
+        NumberofNodesEditField          matlab.ui.control.NumericEditField
+        PlotButton                      matlab.ui.control.Button
+        PlayButton                      matlab.ui.control.Button
+        StopButton                      matlab.ui.control.Button
+        ResetButton                     matlab.ui.control.Button
+        CurrentIterationEditFieldLabel  matlab.ui.control.Label
+        CurrentIterationEditField       matlab.ui.control.NumericEditField
+        MaxIterationsEditFieldLabel     matlab.ui.control.Label
+        MaxIterationsEditField          matlab.ui.control.NumericEditField
+    end
+
+
+    methods (Access = private)
+        
+    function [] = circle_Maker(app, x_centre,y_centre,r, L_noise, R_noise)
+    % Draws a circle of specified radius around point (x_centre,y_centre)
+    
+
+        if strcmpi(app.DimensionsListBox.Value, '1-D')
+            theta1 = linspace(0, pi, 100);
+            theta2 = linspace(pi, 2*pi, 100);
+            x1 = (r-R_noise)*sin(theta1) + x_centre;
+            y1 = (r-R_noise)*cos(theta1) + y_centre;
+            x2 = (r-L_noise)*sin(theta2) + x_centre;
+            y2 = (r-L_noise)*cos(theta2) + y_centre;
+            value = app.UIAxes.ColorOrderIndex;
+            plot(app.UIAxes, x1, y1, '--')
+            app.UIAxes.ColorOrderIndex = value;
+            plot(app.UIAxes, x2, y2, '--')
+        else 
+            theta = linspace(0,2*pi,100);
+            x = r*cos(theta) + x_centre;
+            y = r*sin(theta) + y_centre;
+            plot(app.UIAxes,x,y,'--')
+        end    
+        
+    end     
+
+    end
+
+
+    methods (Access = private)
+
+        % Code that executes after component creation
+        function startupFcn(app)
+% Just some default data to load up when the app starts
+% If you have particular data you want to use a lot, put it in here (AND THE RESET SECTION)
+% so that you don't have to manually input every time
+
+%Data is in the form [agent x y radius l-noise r-noise; ...]
+
+%%%%%% DEFAULT DATA %%%%%%
+data = [1 2 0 1 0 0; 2 1 0 1 0 0;3 0 0 1 0 0;4 -1 0 1 0 0;5 -2 0 1 0 0]; 
+
+app.UITable.Data = data; 
+        end
+
+        % Cell edit callback: UITable
+        function UITableCellEdit(app, event)
+            %This section checks if we're inputting values which aren't relevant given the dimensions we have
+            %If so, it will automatically wipe them. 
+            dim = app.DimensionsListBox.Value;
+            nodes = app.NumberofNodesEditField.Value;
+            
+            if strcmpi(app.DimensionsListBox.Value, '1-D')
+                app.UITable.Data(:, 3) = zeros(1, nodes);
+            else 
+                app.UITable.Data(:, 5) = zeros(1, nodes);
+                app.UITable.Data(:, 6) = zeros(1, nodes); 
+            end 
+            
+        end
+
+        % Button pushed function: PlotButton
+        function PlotButtonPushed(app, event)
+%This function plots the data in two subplots. The first plots the opinions
+%on a line or on a plane. The second plots the evolution of the agents over
+%time. The second plot is only done for the 1-dimensional case. It is triggered by
+%the plot button. 
+app.UIAxes.ColorOrderIndex = 1;
+%Nothing worth changing in here. 
+
+data = app.UITable.Data;
+% c_h = data;
+n = app.NumberofNodesEditField.Value;
+%Set the initial matrix of all zeros for infectivity
+x=data(:, 2);
+y=data(:,3);
+r=data(:,4);
+Xmax = max(x); 
+Xmin = min(x);
+Ymax = max(y);
+Ymin = min(y);
+rmax = max(r);
+%check for stubborn agents
+        for i = 1:n
+            if r(i) == 0
+            colour(i) = 'c';
+            else 
+            colour(i) = 'r';
+            end    
+        end 
+        
+        
+   
+if strcmpi(app.DimensionsListBox.Value, '1-D')
+    for i=1:n
+            if r(i) == 0
+            plot(app.UIAxes,x(i),0,'Marker', 'o', 'MarkerEdgeColor', 'c','MarkerFaceColor','c','MarkerSize',5)
+            else 
+            c_val = app.UIAxes.ColorOrderIndex;
+            plot(app.UIAxes,x(i),0,'Marker', 'o','MarkerSize',5)
+            app.UIAxes.ColorOrderIndex = c_val;
+            end 
+        app.UIAxes.XLim = [Xmin-1, Xmax+1];
+        app.UIAxes.YLim = [-rmax-1, rmax+1];
+        hold(app.UIAxes, 'on')
+        text(app.UIAxes, data(i,2), 0, sprintf('%d', i), 'color', 'k', ...
+                        'fontweight', 'bold');
+        hold(app.UIAxes, 'on')
+        circle_Maker(app, x(i), 0, data(i,4), data(i,5), data(i,6))
+    end
+    hold(app.UIAxes, 'off')
+    
+    plot(app.UIAxes2,0,0)
+else
+    app.UIAxes.ColorOrderIndex = 1;
+    for i=1:n
+            if r(i) == 0
+            plot(app.UIAxes,x(i),y(i),'Marker', 'o', 'MarkerEdgeColor', 'c','MarkerFaceColor','c','MarkerSize',5)
+            else 
+            c_val = app.UIAxes.ColorOrderIndex;
+            plot(app.UIAxes,x(i),y(i),'Marker', 'o','MarkerSize',5)
+            app.UIAxes.ColorOrderIndex = c_val;
+            end 
+        hold(app.UIAxes, 'on')
+        app.UIAxes.XLim = [Xmin-1, Xmax+1];
+        app.UIAxes.YLim = [Ymin-1, Ymax+1];
+        text(app.UIAxes, data(i,2), data(i,3), sprintf('%d', i), 'color', 'k', ...
+                        'fontweight', 'bold');
+        hold(app.UIAxes, 'on')
+        circle_Maker(app, x(i), y(i), data(i,4), 0, 0)
+        hold(app.UIAxes, 'on')
+    end
+end
+
+            
+        end
+
+        % Value changed function: NumberofNodesEditField
+        function NumberofNodesEditFieldValueChanged(app, event)
+            % If we change the number of nodes, the edit field should expand/contract accordingly (and it'll just fill with random values)
+            
+            %You may want to change the parameters of how the random values are generated. 
+            %For instance, in your application you may have different parameters for maximum communication radius
+            %a node can have, or may want to have a specific number of stubborn nodes. That can be changed here, 
+            %and also moved to the startupfcn (and reset button callback) so that accurate nodes are generated every time you
+            %open the app and every time you hit reset
+            
+            nodes = app.NumberofNodesEditField.Value;
+            agents = ones(nodes, 1);
+            for i = 1:nodes
+                agents(i) = i;
+            end
+            app.UITable.Data = [agents, randi([0 10], nodes, 3), zeros(nodes, 2)];
+        end
+
+        % Value changed function: DimensionsListBox
+        function DimensionsListBoxValueChanged(app, event)
+%             You can add this if you want, I don't think the functionality really matters
+
+%               If we change the number of dimensions, values irrelevant to those dimensions should be wiped
+%             nodes = app.NumberofNodesEditField.Value;
+%             
+%             if strcmpi(app.DimensionsListBox.Value, '1-D')
+%                 app.UITable.Data(:, 2) = zeros(1, nodes);
+%             else 
+%                 app.UITable.Data(:, 4) = zeros(1, nodes);
+%                 app.UITable.Data(:, 5) = zeros(1, nodes);
+%             end 
+        end
+
+        % Button pushed function: ResetButton
+        function ResetButtonPushed(app, event)
+            app.CurrentIterationEditField.Value = 0;
+            
+            %If you want to have the same data always loaded up/returned to,
+            %put it in here as well:
+            
+            %%%%% RESET TO RANDOM DATA %%%%%%
+            %generates positions between 0 and 10, radii between 0 and 7, and does not apply noise values
+            nodes = app.NumberofNodesEditField.Value;
+            agents = ones(nodes, 1);
+            for i = 1:nodes
+                agents(i) = i;
+            end
+            %Initialize the zeros with 5 ones on the reset click
+            app.UITable.Data = [agents, zeros(nodes, 2)];
+            app.UITable.Data(1:5, 2) = ones(5,1);
+            %Set radius to 100 (not really need) --------------------
+            app.UITable.Data(:, 4) = [100];
+            app.UITable.Data(:, 5) = zeros(nodes, 1);
+            app.UITable.Data(:, 6) = zeros(nodes, 1);
+            app.UIAxes.ColorOrderIndex = 1;
+            cla(app.UIAxes)
+            cla(app.UIAxes2)
+        end
+
+        % Button pushed function: StopButton
+        function StopButtonPushed(app, event)
+            app.CurrentIterationEditField.Value = app.MaxIterationsEditField.Value; %If we hit the pause button, pause for 15 seconds (if we pause infinitely the app doesn't like it when we quit and reopen)
+        end
+
+        % Button pushed function: PlayButton
+        function PlayButtonPushed(app, event)
+%This is the main code that executes the Krause dynamics
+%It is executed when the Play button is pressed
+cla(app.UIAxes)
+cla(app.UIAxes2)
+n = app.NumberofNodesEditField.Value; %Get the number of nodes
+
+data = app.UITable.Data;
+
+%Set the maximum number of iterations here
+MAX_ITERATIONS = app.MaxIterationsEditField.Value;
+
+arena_dimensions = 3;
+
+%--------------------------------------------------------------------------
+%Construct a cost function here that will manipulate the way the algorithm
+%is executed maybe by changing the radius of certain agents possibly based 
+%on positions, cluster size etc. that will optimize the algorithm in a way
+%specific to your application
+
+%YOUR COST FUNCTION HERE
+
+%--------------------------------------------------------------------------
+
+%If the first option on the dimension listbox is chosen(1-D), then
+%the code will enter the "if" statement. If (2-D) is chosen,
+%then the code will enter the "else" statement
+app.CurrentIterationEditField.Value = 1;
+
+ t=1;
+ radius_I = 100;
+ positionMatrix = 150*(rand(n,4) - 0.5) %Column 1: x0 Column 2: y0, Column 3: Xcurrent Column 4: Ycurrent
+
+if strcmpi(app.DimensionsListBox.Value, '1-D')
+    %Store the opinions of the agents in a column vector x
+    x=data(:,2);
+    xinit = x; %for plotting
+    %Store the radii of the agents in a column vector r
+    r=data(:,4);
+    %Store the noise on the agents radii in column vectors eta_left and
+    %eta_right
+    eta_left=data(:,5);
+    eta_right=data(:,6);
+    %Create a history matrix, H, which will store the evolutions of the
+    %agents' opinions. This line sets the first column to the initial
+    %opinion profile
+    H(:,1)=x;
+    %Start at time=1. This will be incremented by 1 each time the opinion
+    %profile is updated.
+   % N = 10000;
+   
+    while (app.CurrentIterationEditField.Value <= MAX_ITERATIONS && app.CurrentIterationEditField.Value > 0)
+        %Construct an adjacency matrix A which denotes the connections
+        %(edges) between agents. The agents will have a connection if they 
+        %are within range of eachothers opinions based on their radius and
+        %noise
+        %Initialize the position matrix
+        A=zeros(n);
+        
+        for i=1:n
+            for j=1:n
+                distance = sqrt((positionMatrix(i, 3)-positionMatrix(j, 3))^2 + (positionMatrix(i, 4)-positionMatrix(j, 4))^2)
+                
+                if distance < radius_I
+                     val = distance+.5;
+                     A(i,j)= 1/val^3;
+                end
+                
+            end
+        end
+        
+        
+        
+%         for i=1:n
+%            for j=1:n
+%                if x(i)>=x(j) && abs(x(i)-x(j))<=r(i)
+%                    val = (abs(x(i)-x(j))+.5)
+%                    A(i,j)= 1/val;
+%                end
+%            end
+%         end
+        fprintf('%d %d \n%d %d \n \n', A(1,1), A(1,2), A(2,1), A(2,2));
+        %This is where the Krause dynamics is implemented and the opinion
+        %profile is updated
+        
+        %Store the number of connections for each agent in a column vector,
+        %count. Store the sum of opinions for each agent in a column
+        %vector, sum, based on A. Then average the opinion of each agent 
+        %based on the connections and store this new opinion profile in the
+        %next column of the history matrix.
+        count=A*ones(n,1);
+        D = diag(count);
+        L = D-A;
+
+         % This sets an appropriate delta such that the consensus algorithm 
+            %converges (delta is the time step between each interval)
+        for s = 1:n
+            d(s) = L(s,s);
+        end
+        delta_t = 1 / (max(d) + 1);
+        
+        x = x - L*x*delta_t; 
+        
+        H=horzcat(H,x);
+        %Increment time by 1
+        t=t+1;
+        
+        %check for stubborn agents for plotting
+        for i = 1:n
+            if r(i) == 0
+            colour(i) = 'c';
+            face(i) = 'c';
+            else 
+            colour(i) = 'r';
+            face(i) = 'r';
+            end    
+        end 
+        
+         max_x = max(xinit); %limits for plotting
+         min_x = min(xinit);
+        
+        %Update the positions --------------------------------------------------------
+        
+        for i = 1:n
+            positionMatrix(i,3) = positionMatrix(i,3) + 20*(rand()-0.5);
+            positionMatrix(i,4) = positionMatrix(i,4) + 20*(rand()-0.5);
+        end
+        disp(positionMatrix);
+         
+        %Put the new position values into the table visible in the app. 
+        app.UITable.Data(:, [2 4 5 6]) = [H(:,t) r eta_left eta_right];
+        %Plot the opinions
+        app.UIAxes.ColorOrderIndex = 1;
+        for i=1:n
+            if r(i) == 0
+            plot(app.UIAxes,H(i,t),0,'Marker', 'o', 'MarkerEdgeColor', 'c','MarkerFaceColor','c','MarkerSize',5)
+            else 
+            c_val = app.UIAxes.ColorOrderIndex;
+            plot(app.UIAxes,H(i,t),0,'Marker', 'o','MarkerSize',5)
+            app.UIAxes.ColorOrderIndex = c_val;
+            end 
+            hold(app.UIAxes, 'on')
+            app.UIAxes.XLim = [min_x-1 max_x+1];
+            app.UIAxes.YLim = [-max(r)-1 max(r)+1];
+            text(app.UIAxes, H(i,t), 0, sprintf('%d', i), ...
+                        'fontweight', 'bold');
+            hold(app.UIAxes, 'on')
+            circle_Maker(app, H(i,t), 0, r(i), data(i,5), data(i,6))
+            hold(app.UIAxes, 'on')
+        end
+        hold(app.UIAxes, 'off')
+        app.UIAxes2.ColorOrderIndex = 1;
+        plot(app.UIAxes2,linspace(0,t-1,t),H)
+        app.UIAxes2.XLim = [0 app.MaxIterationsEditField.Value];
+        app.UIAxes2.YLim = [0 10];
+        pause(0.1);
+        app.CurrentIterationEditField.Value = app.CurrentIterationEditField.Value + 1;
+    end
+else
+    %Store x positions, y positions and radii.
+    x=data(:,2);
+    y=data(:,3);
+    r=data(:,4);
+    H=zeros(2*n,1);
+    
+    max_x = max(x);
+    min_x = min(x);
+    max_y = max(y);
+    min_y = min(y);
+    
+    %History matrix now has to store x and y positions. One column of the
+    %matrix looks like [x_1(t);y_1(t);x_2(t);y_2(t);...;x_n(t);y_n(t)]
+    for i=1:n
+        H(2*i-1,1)=x(i);
+        H(2*i,1)=y(i);
+    end
+    t=1;
+    
+    %check for stubborn agents
+        for i = 1:n
+            if r(i) == 0
+            colour(i) = 'c';
+            else 
+            colour(i) = 'r';
+            end    
+        end 
+        
+    
+    %this keeps our loop going until we hit the reset button 
+    while (app.CurrentIterationEditField.Value <= MAX_ITERATIONS && app.CurrentIterationEditField.Value > 0)
+        A=zeros(n);
+        
+        for i=1:n
+            for j=1:n
+                if norm([x(i),y(i)]-[x(j),y(j)])<=r(i)
+                    A(i,j)=1;
+                end
+            end
+        end
+        
+        count=A*ones(n,1);
+        D = diag(count);
+        L = D - A;
+        q = [x y];
+        for s = 1:n
+            d(s) = L(s,s);
+        end
+        delta_t = 1 / (max(d) + 1);
+        
+        q = q - L*q*delta_t;
+        x = q(:,1);
+        y = q(:,2);
+      
+        %Stack the x positions and the y positions into a single column
+        %vector, coord.
+        coord=zeros(2*n,1);
+        for i=1:n
+            coord(2*i-1)=x(i);
+            coord(2*i)=y(i);
+        end
+        H=horzcat(H,coord);
+        t=t+1;
+        app.UITable.Data(:, 2:4) = [x, y, r]; 
+        
+        %Plot the opinion profile
+        app.UIAxes.ColorOrderIndex = 1;
+        for i=1:n
+            if r(i) == 0
+            plot(app.UIAxes,H(2*i-1,t),H(2*i,t),'Marker', 'o', 'MarkerEdgeColor', 'c','MarkerFaceColor','c','MarkerSize',5)
+            else 
+            c_val = app.UIAxes.ColorOrderIndex;
+            plot(app.UIAxes,H(2*i-1,t),H(2*i,t),'Marker', 'o','MarkerSize',5)
+            app.UIAxes.ColorOrderIndex = c_val;
+            end 
+            app.UIAxes.XLim = [min_x-1 max_x+1];
+            app.UIAxes.YLim = [min_y-1 max_y+1];
+           text(app.UIAxes, H(2*i-1,t),H(2*i,t), sprintf('%d', i), 'color', 'k', ...
+                        'fontweight', 'bold');
+            hold(app.UIAxes, 'on')
+            circle_Maker(app, H(2*i-1,t),H(2*i,t), r(i), 0, 0)
+        end
+        hold(app.UIAxes, 'off')
+        pause(0.1);
+        app.CurrentIterationEditField.Value = app.CurrentIterationEditField.Value + 1;
+    end
+end
+
+%--------------------------------------------------------------------------
+%Write history to excel spreadsheet called filename. 
+
+%This will be executed if the app reaches its final iteration. 
+%NOTE: IT WILL NOT BE EXECUTED IF THE RESET BUTTON IS PRESSED AFTER PAUSING THE APP
+
+%If 1D algorithm was used, then each column represents each agent's x
+%position, and each row represents a timestep.
+
+%If 2D algorithm was used, then Column 1 contains agent 1's x positions, 
+%column 2 contains agent 1's y positions, column 3 contains agent 2's x 
+%positions, and so on. Each row represents a timestep.
+
+    %------------------- EXCEL SHEETS -------------------
+    min_value = min(min(H));
+    disp(min_value);
+    if min_value < 0
+        for i = 1:size(H,1)
+            for j = 1:size(H,2)
+                H1(i,j) = H(i,j) - min_value; % Get everything to be positive
+            end
+        end
+    else
+        H1 = H;
+    end
+    max_value = max(max(H1));
+    disp(max_value);
+%     H1 = H1*(arena_dimensions/max_value); %Resizing
+    delete agentData.xlsx
+    xlswrite('agentData.xlsx', transpose(H), 1);
+    xlswrite('agentData.xlsx', transpose(H1), 2);
+    H = transpose(H);
+    save('agentData.mat','H')
+%xlswrite(filename,transpose(H))
+      
+        end
+    end
+
+    % App initialization and construction
+    methods (Access = private)
+
+        % Create UIFigure and components
+        function createComponents(app)
+
+            % Create UIFigure
+            app.UIFigure = uifigure;
+            app.UIFigure.Position = [100 100 640 480];
+            app.UIFigure.Name = 'UI Figure';
+
+            % Create UIAxes
+            app.UIAxes = uiaxes(app.UIFigure);
+            title(app.UIAxes, 'Node Location')
+            xlabel(app.UIAxes, 'X')
+            ylabel(app.UIAxes, 'Y')
+            app.UIAxes.Position = [27 261 300 185];
+
+            % Create UITable
+            app.UITable = uitable(app.UIFigure);
+            app.UITable.ColumnName = {'Agent '; 'X'; 'Y'; 'Radius'; 'Left Noise'; 'Right Noise'};
+            app.UITable.RowName = {};
+            app.UITable.ColumnEditable = [false true true true true true];
+            app.UITable.CellEditCallback = createCallbackFcn(app, @UITableCellEdit, true);
+            app.UITable.Position = [336 65 279 197];
+
+            % Create UIAxes2
+            app.UIAxes2 = uiaxes(app.UIFigure);
+            title(app.UIAxes2, 'Node Trajectory')
+            xlabel(app.UIAxes2, 'Time ')
+            ylabel(app.UIAxes2, 'Location')
+            app.UIAxes2.Position = [27 56 300 185];
+
+            % Create DimensionsListBoxLabel
+            app.DimensionsListBoxLabel = uilabel(app.UIFigure);
+            app.DimensionsListBoxLabel.HorizontalAlignment = 'right';
+            app.DimensionsListBoxLabel.Position = [424 433 76 22];
+            app.DimensionsListBoxLabel.Text = 'Dimensions ';
+
+            % Create DimensionsListBox
+            app.DimensionsListBox = uilistbox(app.UIFigure);
+            app.DimensionsListBox.Items = {'1-D', '2-D'};
+            app.DimensionsListBox.ValueChangedFcn = createCallbackFcn(app, @DimensionsListBoxValueChanged, true);
+            app.DimensionsListBox.Position = [515 416 100 41];
+            app.DimensionsListBox.Value = '1-D';
+
+            % Create NumberofNodesEditFieldLabel
+            app.NumberofNodesEditFieldLabel = uilabel(app.UIFigure);
+            app.NumberofNodesEditFieldLabel.HorizontalAlignment = 'right';
+            app.NumberofNodesEditFieldLabel.Position = [397 379 103 22];
+            app.NumberofNodesEditFieldLabel.Text = 'Number of Nodes';
+
+            % Create NumberofNodesEditField
+            app.NumberofNodesEditField = uieditfield(app.UIFigure, 'numeric');
+            app.NumberofNodesEditField.ValueChangedFcn = createCallbackFcn(app, @NumberofNodesEditFieldValueChanged, true);
+            app.NumberofNodesEditField.Position = [515 379 100 22];
+            app.NumberofNodesEditField.Value = 5;
+
+            % Create PlotButton
+            app.PlotButton = uibutton(app.UIFigure, 'push');
+            app.PlotButton.ButtonPushedFcn = createCallbackFcn(app, @PlotButtonPushed, true);
+            app.PlotButton.Position = [397 329 100 24];
+            app.PlotButton.Text = 'Plot';
+
+            % Create PlayButton
+            app.PlayButton = uibutton(app.UIFigure, 'push');
+            app.PlayButton.ButtonPushedFcn = createCallbackFcn(app, @PlayButtonPushed, true);
+            app.PlayButton.Position = [515 329 100 24];
+            app.PlayButton.Text = 'Play';
+
+            % Create StopButton
+            app.StopButton = uibutton(app.UIFigure, 'push');
+            app.StopButton.ButtonPushedFcn = createCallbackFcn(app, @StopButtonPushed, true);
+            app.StopButton.Position = [397 290 100 24];
+            app.StopButton.Text = 'Stop';
+
+            % Create ResetButton
+            app.ResetButton = uibutton(app.UIFigure, 'push');
+            app.ResetButton.ButtonPushedFcn = createCallbackFcn(app, @ResetButtonPushed, true);
+            app.ResetButton.Position = [515 290 100 24];
+            app.ResetButton.Text = 'Reset';
+
+            % Create CurrentIterationEditFieldLabel
+            app.CurrentIterationEditFieldLabel = uilabel(app.UIFigure);
+            app.CurrentIterationEditFieldLabel.HorizontalAlignment = 'right';
+            app.CurrentIterationEditFieldLabel.Position = [468 24 93 22];
+            app.CurrentIterationEditFieldLabel.Text = 'Current Iteration';
+
+            % Create CurrentIterationEditField
+            app.CurrentIterationEditField = uieditfield(app.UIFigure, 'numeric');
+            app.CurrentIterationEditField.Position = [565 24 50 22];
+
+            % Create MaxIterationsEditFieldLabel
+            app.MaxIterationsEditFieldLabel = uilabel(app.UIFigure);
+            app.MaxIterationsEditFieldLabel.HorizontalAlignment = 'right';
+            app.MaxIterationsEditFieldLabel.Position = [326 24 80 22];
+            app.MaxIterationsEditFieldLabel.Text = 'Max Iterations';
+
+            % Create MaxIterationsEditField
+            app.MaxIterationsEditField = uieditfield(app.UIFigure, 'numeric');
+            app.MaxIterationsEditField.Position = [416 24 36 22];
+            app.MaxIterationsEditField.Value = 50;
+        end
+    end
+
+    methods (Access = public)
+
+        % Construct app
+        function app = Opinion_App_final
+
+            % Create and configure components
+            createComponents(app)
+
+            % Register the app with App Designer
+            registerApp(app, app.UIFigure)
+
+            % Execute the startup function
+            runStartupFcn(app, @startupFcn)
+
+            if nargout == 0
+                clear app
+            end
+        end
+
+        % Code that executes before app deletion
+        function delete(app)
+
+            % Delete UIFigure when app is deleted
+            delete(app.UIFigure)
+        end
+    end
+end
