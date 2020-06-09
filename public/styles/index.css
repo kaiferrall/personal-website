@@ -175,24 +175,52 @@ h4 {
     display: none;
 }
 
-.portfolio div {
+.portfolio .p-item {
     margin-top: 60px;
 }
+
+.portfolio .p-item .row {
+    margin-top: 10px;
+    flex-wrap: wrap;
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
 .portfolio h4 {
     margin: 0 0 10px 0;
 }
 
 .portfolio a {
     font-size: 15px;
-    font-weight: 200;
+    font-weight: 300;
     text-decoration: none;
 }
-
-
+.portfolio .github {
+    margin-left: 25px;
+}
+.portfolio .github.private {
+    pointer-events: none;
+    color: grey;
+}
+.portfolio .github.private:hover {
+    cursor: not-allowed;
+}
 .portfolio p {
     font-size: 15px;
     font-weight: 200;
     margin: 10px 0 0 0;
+}
+
+.portfolio img {
+    width: 200px;
+    height: 100px;
+}
+.portfolio .tall-img {
+    width: 100px;
+    height: 200px;
+}
+.portfolio small {
+    font-size: 12px;
 }
 
 @media (max-width: 600px) {
@@ -284,7 +312,9 @@ h4 {
     .portfolio .first {
         margin-top: 20px;
     }
+    .portfolio .p-item .row {
 
+    }
     .portfolio h3 {
         display: block;
     }
