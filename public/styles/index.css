@@ -84,6 +84,11 @@ h4 {
     font-size: 12px;
 }
 
+.name-container small {
+    font-weight: 200;
+    color: grey;
+}
+
 .links {
     margin-top: 50px;
     width: 100%;
