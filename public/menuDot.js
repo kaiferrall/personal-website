@@ -41,13 +41,19 @@ function findSectionInView() {
 function isInViewport(elem) {
     var isSkills = elem.className == "skills section row";
     var isLinks = elem.className == "links section row";
+    var isProj = elem.className == "portfolio section";
 
     var bounding = elem.getBoundingClientRect();
 
     var shift = $(elem).height() > 100 ? $(elem).height() * 0.5 : $(elem).height() * -0.5;
-    
+
+    if ($(elem).height() > $(window).height()) {
+        shift = $(elem).height() *  0.75;
+    }
+
     var topCutOff = 0;
     
+
     if (isSkills && !isLinks) {
         topCutOff = 200;
     } else if (!isSkills && isLinks) {
