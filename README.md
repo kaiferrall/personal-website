@@ -1,3 +1,3 @@
 # My Personal Website
 
-found at: http://kaiferrall.com
+found at: kaiferrall.com
