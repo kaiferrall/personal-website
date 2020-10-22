@@ -1,0 +1,384 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+html, body {
+    cursor: none;        
+}
+
+.cursor-dot, .cursor-dot-outline {
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: rgb(42, 43, 43);
+}
+
+.cursor-dot-outline {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(42, 43, 43, 0.15);
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    font-size: 50px;
+    padding: 0;
+    margin: 0;
+    font-weight: 300;
+}
+
+h3 {
+    font-size: 25px;
+    padding: 0;
+    margin: 0;
+    font-weight: 300;
+}
+
+h4 {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+
+.square {
+    color: white;
+    min-width: 40px;
+    height: 40px;
+    background-color: #2a2b2b;
+    position: absolute;
+    top: 50%;
+    transition-timing-function: ease-out;
+    transition-duration: 0.125s;
+    -webkit-box-shadow: 6px 6px 40px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 6px 40px -10px rgba(0,0,0,0.75);
+    box-shadow: 6px 6px 40px -10px rgba(0,0,0,0.75);
+}
+
+.square p {
+    padding: 10px;
+}
+
+.name-container {
+    height: 100vh;
+}
+
+.name-container p {
+    font-weight: 200;
+    font-size: 12px;
+}
+
+.name-container small {
+    font-weight: 200;
+    color: grey;
+}
+
+.links {
+    margin-top: 50px;
+    width: 100%;
+    height: 40px;
+    justify-content: space-between;
+    -webkit-box-shadow: 0px 11px 33px -20px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 11px 33px -20px rgba(0,0,0,0.75);
+    box-shadow: 0px 11px 33px -20px rgba(0,0,0,0.75);
+}
+
+.links a {
+    width: 100%;
+    color: #2a2b2b;
+    font-size: 20px;
+    font-weight: 300;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: #fcfcfc;
+}
+
+.links a:nth-child(2) {
+    background-color: #2a2b2b;
+    color: white
+}
+
+.links a:hover {
+    font-weight: 600;
+}
+
+.about-me {
+    width: 50%;
+    margin: 350px auto 0 auto;
+}
+.about-me h3 {
+    display: none;
+}
+.about-me p {
+    font-weight: 200;
+    margin-top: 10px;
+}
+
+.about-me .school {
+    margin-top: 25px;
+    font-weight: 500;
+    color: #2a2b2b;
+}
+
+.about-me .school span {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.about-me .program {
+    font-weight: 500;
+    color: #2a2b2b;
+}
+
+.about-me .program span {
+    font-weight: 300;
+    font-size: 14px;
+}
+
+
+.experience {
+    margin-top: 350px;
+}
+.experience .exp-title {
+    display: none;
+}
+.experience .title {
+    display: flex;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 100px
+}
+.experience .title p {
+    align-self: center;
+    font-weight: 200;
+    font-style: italic;
+}
+
+.experience .title .dash {
+    width: 40px;
+    height: 0.5px;
+    background-color: grey;
+    align-self: center;
+    margin: 0 4px;
+}
+.experience .line {
+    width: 100%;
+    height: 0.5px;
+    background-color: #2a2b2b;
+    margin-bottom: 100px;
+}
+
+.experience .description {
+    width: 50%;
+    margin: 0 auto;
+}
+.experience .description p:nth-child(1) {
+    font-weight: 200;
+    font-size: 12px;
+    margin: 10px 0;
+} 
+.experience .description p:nth-child(2) {
+    width: 88%;
+    font-weight: 200;
+}
+.skills h3 {
+    display: none;
+}
+.skills-line {
+    margin-top: 300px;
+    width: 100%;
+    height: 0.5px;
+    background-color: #2a2b2b;
+}
+
+.skills {
+    width: 55%;
+    margin: 300px auto 100px auto;
+    justify-content: space-between;
+}
+
+.skills p {
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.portfolio {
+    width: 50%;
+    margin: 300px auto 100px auto;
+}
+
+.portfolio h3 {
+    display: none;
+}
+
+.portfolio .p-item {
+    margin-top: 60px;
+}
+
+.portfolio .p-item .row {
+    margin-top: 10px;
+    flex-wrap: wrap;
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.portfolio h4 {
+    margin: 0 0 10px 0;
+}
+
+.portfolio h4 span {
+    color: grey;
+    font-weight: 300;
+}
+
+.portfolio a {
+    font-size: 15px;
+    font-weight: 300;
+    text-decoration: none;
+}
+.portfolio .github {
+    margin-left: 25px;
+}
+.portfolio .github.private {
+    pointer-events: none;
+    color: grey;
+}
+.portfolio .github.private:hover {
+    cursor: not-allowed;
+}
+.portfolio p {
+    font-size: 15px;
+    font-weight: 200;
+    margin: 10px 0 0 0;
+}
+
+.portfolio img {
+    width: 200px;
+    height: 100px;
+}
+.portfolio .tall-img {
+    width: 100px;
+    height: 200px;
+}
+.portfolio .wide-img {
+    width: 250px;
+    height: 100px;
+}
+.portfolio small {
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 900px) {
+    .square {
+        display: none;
+    }
+
+    .about-me, .experience, .skills, .portfolio {
+        width: 75%;
+        margin: 150px auto 0 auto;
+    }
+    
+    .about-me h3 {
+        display: block;
+    }
+
+    .about-me p {
+        font-size: 14px;
+    }
+    .experience .exp-title {
+        display: block;
+    }
+
+    .experience .title {
+        display: block;
+        width: 100%;
+        margin-top: 40px;
+    }
+    .experience .title.first {
+        margin-top: 20px;
+    }
+    .experience .title h3 {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .experience .title p {
+        font-size: 12px;
+        font-weight: 300;
+        margin-top: 10px;
+    } 
+
+    .experience .description {
+        width: 100%;
+        margin: 0 auto;
+    } 
+
+    .experience .description p {
+        width: 100%;
+    }
+
+    .experience .description p:nth-child(1) {
+        font-size: 12px;
+        margin-top: 0;
+    } 
+
+    .experience .description p:nth-child(2) {
+        width: 100%;
+    }
+
+    .experience .title .dash {
+        display: none;
+    }
+    .skills h3 {
+        display: block;
+    }
+    .skills {
+        flex-direction: column;
+    }
+
+    .skills div {
+        margin-top: 20px;
+    }
+
+    .portfolio {
+        margin-bottom: 50px;
+    }
+
+    .portfolio div {
+        margin-top: 40px;
+    }
+
+    .portfolio .first {
+        margin-top: 20px;
+    }
+    .portfolio .p-item .row {
+
+    }
+    .portfolio h3 {
+        display: block;
+    }
+}

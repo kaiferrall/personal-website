@@ -11,187 +11,137 @@
     <link rel="stylesheet" href="styles/index.css">
   </head>
   <body>
-    <div class="cursor-dot-outline"></div>
-    <div class="cursor-dot"></div>
-    <div class="square col-c">
-      <p class="" id="menu-message"></p>
-    </div>
-    <div class="name-container section col-v-c">
-      <div>
-        <h1>kaiferrall.com</h1>
-        <div>
+    <section class="landing">
+      <div class="content head">
+        <h1>Hi there, I'm <span>Kai Ferrall.</span></h1>
+        <div class="row">
+          <a target="_blank" href="https://www.linkedin.com/in/kaiferrall">LINKEDIN</a>
+          <a target="_blank" href="https://github.com/kaiferrall">GITHUB</a>
+          <a target="_blank" href="KaiFerrall.pdf">RESUME</a>
+        </div>
+        <div class="contact">
           <p>kaiferrall@gmail.com</p>
           <p>613 583 3409</p>
-          <small>last updated: 06/20/2020</small>
         </div>
       </div>
-    </div>
-    <div class="links section row">
-      <a class="col-v-c" href="https://github.com/kaiferrall">github</a>
-      <a class="col-v-c" target="_blank" href="assets/KaiFerrall.pdf">resume</a>
-      <a class="col-v-c" href="https://www.linkedin.com/in/kai-ferrall/">linkedin</a>
-    </div>
-    <div title="01. about me" class="about-me section">
-      <h3>01. about me</h3>
-      <p>
-        I am a third year university student studying applied mathematics and computer engineering, currently completing a 
-        12 month work term (May 2020 - May 2021). My passion is developing software which is impactful in people's lives and which helps them accomplish things which were previously 
-        not accessible to them. My technical interests are API development, system design, and general fullstack development. I am seeking a software development
-        internship for the summer of 2021.
-      </p>
-      <p class="school">Queen's University <span>(2017-2022)</span></p>
-      <p class="program">Bachelor of Applied Science: <span>Applied Mathematics and Computer Engineering - Professional Internship.</span></p>
-    </div>
-    <div title="02. my experience." class="experience section">
-      <h3 class="exp-title">02. experience</h3>
-      <div class="title first">
-        <h3>ecobee</h3>
-        <div class="dash"></div>
-        <p>Software Engineer, Intern.</p>
-      </div>
-      <div class="description">
-        <p><i>April 2020 - present</i></p>
+    </section>
+    <section class="about-me">
+      <div class="content">
         <p>
-          Developing data pipelines to automate, optimize and integrate internal business systems. Working with Google Cloud
-          Platform, and various other networking services. Developed drop ship monitoring system to lower error costs and save
-          manual work.
+          I am university student studying applied mathematics and computer engineering. Currently I am working
+          as a software engineer intern at ecobee (May 2020 - May 2021). I am hoping to take on interesting and challenging engineering
+          problems, requiring a wide range of skills and a holistic perspective. My interests are in full stack development, as I 
+          enjoy creating backend and user facing applications. From a technical perspective I enjoy working on distributed systems, 
+          cloud applications and IOT systems.  
         </p>
       </div>
-      <div class="title">
-        <h3>Pitch Development</h3>
-        <div class="dash"></div>
-        <p>Full stack web developer.</p>
+    </section>
+    <section class="skills">
+      <div class="content">
+        <h1>Skills .03</h1>
+        <div class="line"></div>
+        <p>Python 3.x, Node.js, C, Java, JavaScript, HTML, CSS</p>
+        <p>Google Cloud Platform, MySQL, MongoDB, API development/integration, Networking HTTP/HTTPS, Redis, Regex</p>
+        <p>React.js, Redux, Express.js, NumPy, OpenCV, jQuery</p>
       </div>
-      <div class="description">
-        <p><i>April 2019 - Sept 2020</i></p>
-        <p>
-          Developing web applications for clients. Working with designers, stakeholders and clients gaining great communication and 
-          collaboration experience. Developed multiple microservices and a redis user caching service, saving 176ms per request.
-        </p>
-      </div>
-      <div class="title">
-        <h3>Englinks</h3>
-        <div class="dash"></div>
-        <p>Engineering tutor.</p>
-      </div>
-      <div class="description">
-        <p><i>April 2019 - April 2020</i></p>
-        <p>
-          Tutoring fellow engineering students in classes such as calculus, programming and linear algebra. Gained greate communication practice and experience as well as a better understanding of fundamental concepts.
-        </p>
-      </div>
-    </div>
-    <div title="03. my skills." class="skills section row">
-      <h3>03. skills</h3>
-      <div>
-        <p>Cross team collaboration</p>
-        <p>Jira & Confluence</p>
-        <p>Working with clients & stakeholders</p>
-        <p>Technical/Engineering report writing</p>
-      </div>
-      <div>
-        <p>Python 3</p>
-        <p>NodeJS</p>
-        <p>JavaScript/HTML/CSS</p>
-        <p>Java</p>
-        <p>C</p>
-      </div>
-      <div>
-        <p>React</p>
-        <p>MongoDB</p>
-        <p>JQuery</p>
-        <p>Redux</p>
-        <p>Express & Flask</p>
-        <p>SASS</p>
-      </div>
-      <div>
-        <p>Google Cloud Platform</p>
-        <p>Amazon Web Services</p>
-        <p>API creation/integration</p>
-        <p>Mobile optimization</p>
-        <p>Stripe API</p>
-      </div>
-    </div>
-    <div title="04. my projects and work." class="portfolio section">
-      <h3>04. portfolio</h3>
-      <div class="p-item first">
-        <h4>Modelling the spread of viral disease via Opinion dynamics <span>- Sept 2018</span></h4>
-        <a href="assets/matlab.txt" target="_blank">model source code.</a>
-        <p>
-          In a team of 4 created a MATLAB GUI & model to simulate the spread of a viral diseases. The model utilized
-          the Opinion Dynamics algorithm. Incorporating real world researched metrics, the model simulated movement 
-          and used an infection radius dynamically updated based on the agents infectivity level. 
-        </p>
-        <div class="row">
-          <a href="assets/graph1.png" target="_blank"><img class="wide-img" src="assets/graph1.png" alt=""></a>
-          <a href="assets/graph2.png" target="_blank"><img class="wide-img" src="assets/graph2.png" alt=""></a>
+    </section>
+    <section class="portfolio">
+      <div class="content">
+        <h1>Portfolio .04</h1>
+        <div class="line"></div>
+        <div class="portfolio-item">
+          <h2>HeadtoHead.ca</h2>
+          <a target="_blank" href="https://portal.headtohead.ca/">portal.headtohead.ca/</a>
+          <p>
+            A custom made content management system with a subscription service integrated with the Stripe API 
+            for credit card payments. The application contained an admin authentication portal for managing 
+            content, and a user portal with seperate authentication. I also developed a media microservice for
+             this application to seperately handle all media content management (video and images).
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <h2>GlocalizationHub.ca</h2>
+          <a target="_blank" href="https://platform.glocalizationhub.com/">platform.glocalizationhub.com/</a>
+          <p>
+            An online market place created for Glocalizationhub.com. Incorporated paid online subscriptions for 
+            students to register and pay teachers for courses. As well, contains a complex dashboard featuring 
+            course search/discovery and registration.
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <h2>CloudTech</h2>
+          <a target="_blank" href="https://github.com/kaiferrall/QHacks-Server">Github</a>
+          <a target="_blank" href="https://www.youtube.com/watch?v=ePyIDUMcLYU&feature=youtu.be">Sample video</a>
+          <p>
+            In a team of 3 this project was created for a hackathon. The system invloved a web cam streaming 
+            service which in real time ran a Yolo 3D object detection model to analysis web cam data. The result 
+            of the model was then streamed back to the client and displayed in the browser.
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <h2>Sexual Assault Centre Android App</h2>
+          <p>
+            In a team of 4, designed and developed an Android app for the Sexual Assault Centre of Kingston.
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <h2>Profalytics.com</h2>
+          <a target="_blank" href="http://profalytics.herokuapp.com/">profalytics.com/</a>
+          <a target="_blank" href="https://github.com/kaiferrall/FeedBack">Github</a>
+          <p>
+            A lecture/presentation feedback application I created in my second year for professors to garner 
+            live feedback from students more easily. Presenters create a quick survey and a unique code is 
+            generated and distributed to the audience to fill out the form. The responses can be seen live by the presenter.
+          </p>
+        </div>
+        <div class="portfolio-item">
+          <h2>Viral Disease Model</h2>
+          <p>
+            In a team of 4 created a MATLAB GUI & model to simulate the spread of a viral diseases. The model 
+            utilized the Opinion Dynamics algorithm. Incorporating real world researched metrics, the model
+             simulated movement and used an infection radius dynamically updated based on the agents infectivity level.
+          </p>
         </div>
       </div>
-      <div class="p-item first">
-        <h4>CloudTect - Web cam object detection <span>- Feb 2019</span></h4>
-        <a href="https://youtu.be/ePyIDUMcLYU" target="_blank">preview video</a>
-        <a class="github" href="https://github.com/kaiferrall/QHacks-Server" target="_blank">github</a>
-        <p>
-          In a team of 3 this project was created for a hackathon. The system invloved a web cam streaming service which
-          in real time ran a Yolo 3D object detection model to analysis web cam data. The result of the model was then streamed
-          back to the client and displayed in the browser.
-        </p>
-      </div>
-      <div class="p-item first">
-        <h4>Portal.HeadtoHead.ca <span>- June 2019</span></h4>
-        <a href="https://portal.headtohead.ca/" target="_blank">application link</a>
-        <a class="github private" href="#">private github</a>
-        <p>
-          A custom made content management system with a subscription service integrated with the Stripe API for credit
-          card payments. The application contained an admin authentication portal for managing content, and a user portal 
-          with seperate authentication. I also developed a media microservice for this application to seperately handle all 
-          media content management (video and images).
-        </p>
-        <div class="row">
-          <small>Contains paid content, requires account to view.</small>
+    </section>
+    <section class="experience">
+      <div class="content">
+        <h1>Experience .05</h1>
+        <div class="line"></div>
+        <div class="experience-item">
+          <h2><b>ecobee</b> - Software Engineer Intern</h2>
+          <small>May 2020 - May 2021</small>
+          <p>
+            Working with internal stakeholders to build and optimize business systems.
+          </p>
+          <p>
+            Developed drop-ship data pipeline with Google Cloud and various SFTP services, saving $50,000/yr.
+          </p>
+        </div>
+        <div class="experience-item">
+          <h2><b>Pitch Development</b> - Full Stack Developer</h2>
+          <small>May 2019 - Sep 2019</small>
+          <p>Worked directly with designers and clients, gained great professional communication/collaboration experience.</p>
+          <p>Developed generalized media microservice, saving ~ 40 hours of manual work.</p>
+          <p>Created cache service with Redis, on average saving 176ms per authenticated request.</p>
+        </div>
+        <div class="experience-item">
+          <h2><b>Acoutera</b> - Frontend Developer</h2>
+          <small>May 2018 - Sep 2018</small>
+          <p>Developing generalized React.js components for flexible use across application.</p>
+          <p>Implementing UX features, and UI features from Figma.</p>
         </div>
       </div>
-      <div class="p-item">
-        <h4>Platform.Glocalizationhub.com <span>- August 2019</span></h4>
-        <a href="https://platform.glocalizationhub.com/" target="_blank">application link</a>
-        <a class="github private" href="#">private github</a>
-        <p>
-          An online market place created for Glocalizationhub.com. Incorporated paid online subscriptions for students
-          to register and pay teachers for courses. As well, contains a complex dashboard featuring course search/discovery 
-          and registration.
-        </p>
-        <div class="row">
-          <small>Contains paid content, requires account to view.</small>
-        </div>
+    </section>
+    <section class="education">
+      <div class="content">
+        <h1>Education .06</h1>
+        <div class="line"></div>
+        <p><b>Queen's University</b> - BASc. Applied Mathematics and Computer Engineering</p>
+        <small>2017 - 2022</small>
+        <p><b>Engineering Society Software Development Team</b> - Team Lead</p>
       </div>
-      <div class="p-item">
-        <h4>Feedback <span>- Sept 2018</span></h4>
-        <a href="http://profalytics.herokuapp.com/" target="_blank">application link</a>
-        <a class="github" href="https://github.com/kaiferrall/FeedBack" target="_blank">github repository</a>
-        <p>A lecture/presentation feedback application I created in my second year for professors to garner live 
-          feedback from students more easily. Presenters create a quick survey and a unique code is generated and 
-          distributed to the audience to fill out the form. The responses can be seen live by the presenter.
-        </p>
-        <div class="row">
-          <a href="assets/feedback1.png" target="_blank"><img src="assets/feedback1.png" alt=""></a>
-          <a href="assets/feedback2.png" target="_blank"><img src="assets/feedback2.png" alt=""></a>
-          <a href="assets/feedback3.png" target="_blank"><img src="assets/feedback3.png" alt=""></a>
-        </div>
-      </div>
-      <div class="p-item">
-        <h4>Sexual Assault Centre, Android app <span>- Dec 2017</span></h4>
-        <a href="https://github.com/16cmc21/SACKingstonApplication" target="_blank">github</a>
-        <p>Created a portal for Head to Head which included both admin and user authentication. Admins are able to upload multi media (video/images) and users must pay subscription to access media.</p>
-        <div class="row">
-          <a href="assets/sac1.png" target="_blank"><img class="tall-img" src="assets/sac1.png" alt=""></a>
-          <a href="assets/sac2.png" target="_blank"><img class="tall-img" src="assets/sac2.png" alt=""></a>
-          <a href="assets/sac3.png" target="_blank"><img class="tall-img" src="assets/sac3.png" alt=""></a>
-        </div>
-      </div>
-    </div>
+    </section>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
-  <script src="cursor.js"></script>
-  <script src="menuDot.js"></script>
-  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
 </html>
