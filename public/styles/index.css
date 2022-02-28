@@ -1,9 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
     margin-bottom: 100px;
-    max-width: 1500px;
 }
 
 h1 {
@@ -30,90 +28,90 @@ a {
     margin: 0;
     padding: 0;
 }
-.line {
-    width: 100%;
-    height: 1px;
-    background-color: black;
-    margin: 5px 0;
-}
-.landing {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 0;
-}
-
-.content {
-    margin: 0 150px;
-}
-
-section {
-    margin-top: 40px;
-}
-
-.portfolio-item a:nth-of-type(even) {
-    margin-left: 10px;
-}
 
 p {
     font-weight: 300;
 }
 
-.head h1 {
-    font-size: 40px;
-    margin-bottom: 20px;
-    color: #d90429;
+.space {
+    width: 60%;
+    margin: 5% auto;
+    max-width: 1000px;
 }
-.head h1 span {
-    padding: 2px 4px;
+
+.toggle {
+    border-top: 1px solid #cfcfcf;
+    border-bottom: 1px solid #cfcfcf;
+    justify-content: space-evenly;
 }
-.head p {
-    width: 50%;
-    margin: 20px 0;
+
+.toggle h5 {
+    margin: 2px;
+    cursor: pointer;
+}
+
+.toggle h5:hover {
+    color: #4f4f4f;
+}
+
+.item h4 {
+    margin-bottom: 40px;
+}
+
+.about {
+    display: block;
+}
+
+.about p {
+    color: #4f4f4f;
+}
+
+.experience {
+    display: none;
+}
+
+.exp-item {
+    border-top: 0.5px solid #cfcfcf;
+    margin: 20px 0 50px 0;
+}
+
+.exp-item h6 {
+    margin: 6px 0 5px 0;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+.exp-item h5 {
+    margin: 8px 0 12px 0;
+    font-size: 15px;
+}
+
+.exp-item-date {
+    color: #5c5c5c;
+    font-size: 11px;
     font-weight: 300;
-}
-.contact {
-    margin-top: 20px;
-}
-.contact p {
-    margin: 0;
-}
-.head a {
-    text-decoration: none;
-    color: black;
+    margin: 10px 0 0 0;
+    font-family: 'Open Sans', sans-serif;
 }
 
-.head a:nth-of-type(even) {
-    margin: 0 20px;
-}
-.portfolio-item {
-    margin: 20px 0;
-}
-
-.portfolio-item p {
-    width: 75%;
+.exp-item-location {
+    color: #5c5c5c;
+    font-size: 11px;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
 }
 
-.experience-item:nth-of-type(even) {
-    margin: 20px 0;
+.projects {
+    display: none;
 }
 
-@media (max-width: 875px) {
-    .content {
-        margin: 0 50px;
-    }
-
-    .portfolio-item p {
-        width: 100%;
-    }
-
-    .head p {
-        width: 100%;
-    }
+.education {
+    display: none;
 }
-@media (max-width: 434px) {
-    .content {
-        margin: 0 25px;
+
+@media (max-width: 700px) {
+    .space {
+        width: 80%;
     }
 }

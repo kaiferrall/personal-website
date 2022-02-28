@@ -1,164 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>Kai Ferrall</title>
-    <link rel="shortcut icon" type="image/x-icon" href="assets/logo2.webp" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="assets/galatea-cufonfonts/" rel="stylesheet">
-    <link rel="stylesheet" href="styles/_classes.css">
-    <link rel="stylesheet" href="styles/index.css">
-  </head>
-  <body>
-    <section class="landing">
-      <div class="content head">
-        <h1><span>Kai Ferrall.</span></h1>
-        <div class="row">
-          <a target="_blank" href="https://www.linkedin.com/in/kaiferrall">LINKEDIN</a>
-          <a target="_blank" href="https://github.com/kaiferrall">GITHUB</a>
-          <a target="_blank" href="kaiferrall_resume.pdf">RESUME</a>
-        </div>
-        <div class="contact">
-          <p>kaiferrall@gmail.com</p>
-          <p>613 583 3409</p>
-        </div>
-      </div>
-    </section>
-    <section class="about-me">
-      <div class="content">
-        <p>Hi there,</p>
-        <p>
-          I'm a student studying applied mathematics and computer engineering, with technical interests
-          in distributed and IOT systems, as well as full stack development. More specifically I enjoy developing
-          and designing event driven systems, writing APIs, and creating complex frontend applications. I seek to 
-          work in collaborative teams, with the goal of developing software which is reliable, scalable and provides 
-          meaningful value to end users.
-        </p>
-      </div>
-    </section>
-    <section class="experience">
-      <div class="content">
-        <h1>Experience</h1>
-        <div class="line"></div>
-        <div class="experience-item">
-          <h2><b>Amazon</b> - Software Development Engineer Intern</h2>
-          <small>Jun. 2020 - Aug. 2021</small>
-          <p>
-            Owned, designed and developed an application for delivery station managers to configure the authentication methods their
-            drivers must adhere to. By allowing station managers to configure these checks the tool removed ~90% of the ticket volume of my team.
-          </p>
-          <p>
-            Wrote Java API with 100% JUnit test coverage. GraphQL API to proxy frontend requests and utilize internal Amazon authentication system.
-            Created React.js frontend to connect to API. Application was completed and deployed to live for each stage at end of term.
-          </p>
-          <p>
-            Created a cloud development kit (cdk) to automate deployment of the application through all development stages (beta -> gamma -> prod),
-            along with multiple regions. 
-          </p>
-        </div>
-        <div class="experience-item">
-          <h2><b>ecobee</b> - Software Engineer Intern</h2>
-          <small>May 2020 - May 2021</small>
-          <p>
-            Working with internal stakeholders to build and optimize business systems.
-          </p>
-          <p>
-            Developed drop-ship data pipeline with Google Cloud and various SFTP services, saving $50,000/yr.
-          </p>
-        </div>
-        <div class="experience-item">
-          <h2><b>Pitch Development</b> - Full Stack Developer</h2>
-          <small>May 2019 - Aug. 2019</small>
-          <p>Worked directly with designers and clients, gained great professional communication/collaboration experience.</p>
-          <p>Developed generalized media microservice, saving ~ 40 hours of manual work.</p>
-          <p>Created cache service with Redis, on average saving 176ms per authenticated request.</p>
-        </div>
-        <div class="experience-item">
-          <h2><b>Acoutera</b> - Frontend Developer</h2>
-          <small>May 2018 - Aug. 2018</small>
-          <p>Developing generalized React.js components for flexible use across application.</p>
-          <p>Implementing UX features, and UI features from Figma.</p>
-        </div>
-      </div>
-    </section>
-    <section class="portfolio">
-      <div class="content">
-        <h1>Portfolio</h1>
-        <div class="line"></div>
-        <div class="portfolio-item">
-          <h2>HeadtoHead.ca</h2>
-          <a target="_blank" href="https://portal.headtohead.ca/">portal.headtohead.ca/</a>
-          <p>
-            A custom made content management system with a subscription service integrated with the Stripe API 
-            for credit card payments. The application contained an admin authentication portal for managing 
-            content, and a user portal with seperate authentication. I also developed a media microservice for
-             this application to seperately handle all media content management (video and images).
-          </p>
-        </div>
-        <div class="portfolio-item">
-          <h2>GlocalizationHub.ca</h2>
-          <a target="_blank" href="https://platform.glocalizationhub.com/">platform.glocalizationhub.com/</a>
-          <p>
-            An online market place created for Glocalizationhub.com. Incorporated paid online subscriptions for 
-            students to register and pay teachers for courses. As well, contains a complex dashboard featuring 
-            course search/discovery and registration.
-          </p>
-        </div>
-        <div class="portfolio-item">
-          <h2>CloudTech</h2>
-          <a target="_blank" href="https://github.com/kaiferrall/QHacks-Server">Github</a>
-          <a target="_blank" href="https://www.youtube.com/watch?v=ePyIDUMcLYU&feature=youtu.be">Sample video</a>
-          <p>
-            In a team of 3 this project was created for a hackathon. The system invloved a web cam streaming 
-            service which in real time ran a Yolo 3D object detection model to analysis web cam data. The result 
-            of the model was then streamed back to the client and displayed in the browser.
-          </p>
-        </div>
-        <div class="portfolio-item">
-          <h2>Sexual Assault Centre Android App</h2>
-          <p>
-            In a team of 4, designed and developed an Android app for the Sexual Assault Centre of Kingston.
-          </p>
-        </div>
-        <div class="portfolio-item">
-          <h2>Profalytics.com</h2>
-          <a target="_blank" href="http://profalytics.herokuapp.com/">profalytics.com/</a>
-          <a target="_blank" href="https://github.com/kaiferrall/FeedBack">Github</a>
-          <p>
-            A lecture/presentation feedback application I created in my second year for professors to garner 
-            live feedback from students more easily. Presenters create a quick survey and a unique code is 
-            generated and distributed to the audience to fill out the form. The responses can be seen live by the presenter.
-          </p>
-        </div>
-        <div class="portfolio-item">
-          <h2>Viral Disease Model</h2>
-          <p>
-            In a team of 4 created a MATLAB GUI & model to simulate the spread of a viral diseases. The model 
-            utilized the Opinion Dynamics algorithm. Incorporating real world researched metrics, the model
-             simulated movement and used an infection radius dynamically updated based on the agents infectivity level.
-          </p>
-        </div>
-      </div>
-    </section>
-    <section class="education">
-      <div class="content">
-        <h1>Education</h1>
-        <div class="line"></div>
-        <p><b>Queen's University</b> - BASc. Applied Mathematics and Computer Engineering</p>
-        <small>2017 - 2022</small>
-        <p><b>Engineering Society Software Development Team</b> - Team Lead</p>
-      </div>
-    </section>
-    <section class="skills">
-      <div class="content">
-        <h1>Skills</h1>
-        <div class="line"></div>
-        <p>Python, Node.js, Java, JavaScript & TypeScript, HTML, CSS</p>
-        <p>Google Cloud Platform, Amazon Web Services, MySQL, MongoDB, API development/integration, Networking HTTP/HTTPS, Redis, Regex</p>
-        <p>React.js, Redux, Express.js, NumPy, OpenCV, jQuery</p>
-      </div>
-    </section>
-  </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Kai Ferrall</title>
+  <link rel="shortcut icon" type="image/x-icon" href="assets/logo2.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap"
+    rel="stylesheet">
+  <link href="assets/galatea-cufonfonts/" rel="stylesheet">
+  <link rel="stylesheet" href="styles/_classes.css">
+  <link rel="stylesheet" href="styles/index.css">
+</head>
+
+<body>
+  <div class="header space">
+    <p>Kai Ferrall</p>
+    <p>kaiferrall@gmail.com</p>
+    <a href="https://github.com/kaiferrall">github</a>
+    <a href="https://www.linkedin.com/in/kaiferrall/">linkedin</a>
+    <a href="Kaiferrall_resume.pdf">resume</a>
+  </div>
+  <div class="toggle row space">
+    <h5 id="about-menu-item">About</h5>
+    <h5 id="exp-menu-item">Experience</h5>
+    <h5 id="proj-menu-item">Projects</h5>
+    <h5 id="edu-menu-item">Education</h5>
+  </div>
+  <div id="about" class="about item space">
+    <h4>About me and my interests.</h4>
+    <p>
+      In development. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+      the industry's
+      standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+      type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+      remaining essentially unchanged.
+    </p>
+  </div>
+  <div id="experience" class="experience item space">
+    <h4>My past professional experiences.</h4>
+    <div class="exp-item">
+      <h6>META</h6>
+      <h5>Software Engineer</h5>
+      <p>
+        To be determined.
+      </p>
+      <p class="exp-item-date">Aug. 2022 &#8901; current</p>
+      <p class="exp-item-location">New York, NY</p>
+    </div>
+    <div class="exp-item">
+      <h6>AMAZON</h6>
+      <h5>Software Development Engineer Intern</h5>
+      <p>Owned, designed and developed an application for delivery station managers to configure the authentication
+        methods their drivers must adhere to. By allowing station managers to configure these checks the tool removed
+        ~90% of the ticket volume of my team.
+      </p>
+      <p class="exp-item-date">Jun. 2021 - Aug. 2021 &#8901; 4 mos</p>
+      <p class="exp-item-location">Toronto, ON</p>
+    </div>
+    <div class="exp-item">
+      <h6>ECOBEE</h6>
+      <h5>Software Engineer Intern</h5>
+      <p>
+        Working with internal stakeholders to build and optimize business systems.
+        Developed drop-ship data pipeline with Google Cloud and various SFTP services, saving $50,000/yr.
+      </p>
+      <p class="exp-item-date">May 2020 - May 2021 &#8901; 1 yr</p>
+      <p class="exp-item-location">Toronto, ON</p>
+    </div>
+    <div class="exp-item">
+      <h6>PITCH DEVELOPMENT</h6>
+      <h5>Full Stack Developer</h5>
+      <p>
+        Worked directly with designers and clients, gained great professional communication/collaboration experience.
+        Developed generalized media microservice, saving ~ 40 hours of manual work.
+        Created cache service with Redis, on average saving 176ms per authenticated request.
+      </p>
+      <p class="exp-item-date">May 2019 - Aug. 2019 &#8901; 4 mos</p>
+      <p class="exp-item-location">Kingston, ON</p>
+    </div>
+  </div>
+  <div id="projects" class="projects item space">
+    <p>projects</p>
+  </div>
+  <div id="education" class="education item space">
+    <p>education</p>
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script src="menu.js"></script>
+
 </html>
