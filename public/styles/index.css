@@ -39,6 +39,14 @@ p {
     max-width: 1000px;
 }
 
+.last-updated {
+    margin-top: 10px;
+    color: #5c5c5c;
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+}
+
 .toggle {
     border-top: 1px solid #cfcfcf;
     border-bottom: 1px solid #cfcfcf;
@@ -85,6 +93,10 @@ p {
 .exp-item h5 {
     margin: 8px 0 12px 0;
     font-size: 15px;
+}
+
+.exp-item p {
+    color: #4f4f4f;
 }
 
 .exp-item-date {
