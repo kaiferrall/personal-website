@@ -39,6 +39,10 @@ p {
     max-width: 1000px;
 }
 
+#name {
+    margin-bottom: 4px;
+}
+
 .last-updated {
     margin-top: 10px;
     color: #5c5c5c;
@@ -122,8 +126,21 @@ p {
     display: none;
 }
 
+.edu-courses {
+    margin: 80px 0;
+}
+
+.edu-course-work {
+    justify-content: space-evenly;
+}
+
+.edu-course-work ul {
+    text-decoration: none;
+}
+
 @media (max-width: 700px) {
     .space {
+        margin-top: 10%;
         width: 80%;
     }
 }
